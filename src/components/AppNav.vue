@@ -1,8 +1,9 @@
 <template lang="pug">
 #nav
   router-link(to='/') Home
-  router-link(to='/dashboard') Dashboard
+  router-link(v-if='loggedIn' to='/dashboard') Dashboard
   router-link.button(v-if='!loggedIn' to='/login') Login
+  button.logoutButton(type='button', v-else @click='logout') Logout
 </template>
 
 <script>
@@ -10,6 +11,12 @@ import { authComputed } from '@/vuex/helpers.js'
 export default {
   computed: {
     ...authComputed
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+      
+    }
   }
 }
 </script>

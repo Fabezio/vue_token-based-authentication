@@ -6,8 +6,8 @@ div
     label(for='password') Password:
     input(v-model='password', name='password', type='password', value)
     button(type='submit', name='button') Login
-    div No account yet? then 
-    router-link(to='/register') register
+        div No account yet? then  
+        router-link(to='/register') register
 </template>
 
 <script>
