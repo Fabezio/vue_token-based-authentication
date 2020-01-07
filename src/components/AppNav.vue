@@ -2,12 +2,16 @@
 #nav
   router-link(to='/') Home
   router-link(to='/dashboard') Dashboard
-  router-link(to='/register') Register
-
+  router-link.button(v-if='!loggedIn' to='/login') Login
 </template>
 
 <script>
-export default {}
+import { authComputed } from '@/vuex/helpers.js'
+export default {
+  computed: {
+    ...authComputed
+  }
+}
 </script>
 
 <style lang="scss" scoped>

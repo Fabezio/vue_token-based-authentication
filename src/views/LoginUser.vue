@@ -1,31 +1,27 @@
 <template lang="pug">
 div
-  form(@submit.prevent='register')
-    label(for='name') Name:
-    input(v-model='name', name='name', type='text', value)
+  form(@submit.prevent='login')
     label(for='email') Email:
     input(v-model='email', name='email', type='email', value)
     label(for='password') Password:
     input(v-model='password', name='password', type='password', value)
-    button(type='submit', name='button') Register
-    div Already have an account? then 
-    router-link(to='/login') login
+    button(type='submit', name='button') Login
+    div No account yet? then 
+    router-link(to='/register') register
 </template>
 
 <script>
 export default {
   data () {
     return {
-      name: '',
       email: '',
       password: ''
     }
   },
   methods: {
-    register () {
+    login () {
       this.$store
-        .dispatch('register', {
-          name: this.name,
+        .dispatch('login', {
           email: this.email,
           password: this.password
         })
