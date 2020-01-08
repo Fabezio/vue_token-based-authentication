@@ -8,8 +8,13 @@ div
     label(for='password') Password:
     input(v-model='password', name='password', type='password', value)
     button(type='submit', name='button') Register
-    div Already have an account? then 
-    router-link(to='/login') login
+    ul
+      li(v-for='(error, index) in errors' :key='index') {{error}}
+
+  div Already have an account?
+  div Login
+    span &nbsp;
+      router-link(to='/login') there
 </template>
 
 <script>
@@ -18,7 +23,8 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      errors: null
     }
   },
   methods: {
@@ -31,6 +37,9 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: 'dashboard' })
+        })
+        .catch((err) => {
+          this.errors = err.response.data.errors
         })
     }
   }
